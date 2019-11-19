@@ -14,6 +14,11 @@ markdown = "*"
 django-filter = "*"
 spacy = "*"
 requests = "*"
+html2text = "*"
+gensim = "*"
+pyldavis = "*"
+textblob = "*"
+nltk = "*"
 
 [requires]
 python_version = "3.7"

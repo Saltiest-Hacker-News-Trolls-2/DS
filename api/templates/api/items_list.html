@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for object in object_list  %}
+<!-- Card -->
+
+
+
+    <ul>
+      <!-- Title -->
+      <h4 class="card-title"><strong>{{ object.by }}</strong></h4>
+      <!-- Subtitle -->
+      <h6 class="font-weight-bold indigo-text py-2">Parent:{{ object.parent }} <br> Time:{{ object.time }} </h6>
+      <!-- Text -->
+      <p class="card-text">{{ object.text }}</p>
+
+    </ul>
+
+
+
+<br>
+{% endfor %}
+
+
+{% endblock %}

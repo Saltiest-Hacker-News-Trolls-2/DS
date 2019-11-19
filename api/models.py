@@ -7,16 +7,18 @@ class Items(models.Model):
     id = models.IntegerField(primary_key=True)
     deleted = models.BooleanField(default=False)
     type = models.CharField(max_length=15)
-    text = models.TextField(max_length=500)
     by = models.CharField(max_length=50)
-    time = models.DateField(default=timezone.now)
-    parent = models.CharField(max_length=50)
-    # kids = models.Inte(validators=int_list_validator)
-    url = models.URLField(max_length=75)
-    score = models.IntegerField()
-    title = models.TextField(max_length=100)
-    # parts = models.CharField(validators=int_list_validator)
-    descendants = models.IntegerField()
+    time = models.IntegerField()
+    dead = models.BooleanField(default=False)
+    kids = models.IntegerField(default=0, validators=[int_list_validator])
+    parent = models.IntegerField(default=0)
+    text = models.TextField(default='')
 
     def __str__(self): 
-        return self.title 
+        return self.text 
+
+
+class SaltyUser(models.Model):
+    by = models.ForeignKey(Items, on_delete=models.CASCADE)
+    score = models.DecimalField(max_digits=8, decimal_places=3)
+    catagory = models.CharField(default='', max_length=15)
