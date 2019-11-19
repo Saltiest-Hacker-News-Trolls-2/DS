@@ -1,5 +1,6 @@
 # Define a function to return the sentiment score of a comment
 from textblob import TextBlob
+
 def sentiment_score(comment):
     score = round(TextBlob(comment).sentiment.polarity, 3) 
     # the more negative the ouput value the, the more negative the sentiment of the comment

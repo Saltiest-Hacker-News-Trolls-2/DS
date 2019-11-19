@@ -28,7 +28,7 @@ class Command(BaseCommand):
         text_maker.open_quote = True
         text_maker.close_quote = True
 
-        for i in range(1, 41):
+        for i in range(1, 46):
             response = requests.get(f'https://hacker-news.firebaseio.com/v0/item/{i}.json?print=pretty')
             if response.status_code == 200:            
                 if response.json()['type'] == 'comment':
@@ -37,17 +37,19 @@ class Command(BaseCommand):
 
                     text_conv = text_maker.handle(response.json()['text'])
 
+
+                    '''
+                    Checking keys should be easier than this so maybe this can be a function. 
+                    '''
+                    if 'text' and 'by' and 'id' not in response:
+                        pass
+                    
                     Items.objects.create(
                         id = response.json()['id'],
-                        # deleted = response.json()['deleted'],
-                        type = response.json()['type'],
                         by = response.json()['by'],
-                        time = response.json()['time'],
-                        # dead = response.json()['dead'],
-                        # kids = response.json()['kids'],
-                        parent = response.json()['parent'],
                         text = text_conv,
                     )
+                    
             else:
                 print('nope', response.status_code)
 
