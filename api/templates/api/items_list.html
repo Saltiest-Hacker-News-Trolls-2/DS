@@ -12,6 +12,7 @@
       <h4 class="card-title"><strong>{{ object.by }}</strong></h4>
       <!-- Subtitle -->
       <h6 class="font-weight-bold indigo-text py-2">Parent:{{ object.parent }} <br> Time:{{ object.time }} </h6>
+      <h6 class="font-weight-bold indigo-text py2-">ID:{{ object.id }} <br> Type:{{ object.type }}</h6>
       <!-- Text -->
       <p class="card-text">{{ object.text }}</p>
 
@@ -21,6 +22,9 @@
 
 <br>
 {% endfor %}
+
+
+{% endblock %}
 
 
 {% endblock %}
