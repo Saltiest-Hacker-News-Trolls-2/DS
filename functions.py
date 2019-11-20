@@ -1,27 +1,18 @@
 # Define a function to return the sentiment score of a comment
 from textblob import TextBlob
+from django_pandas.io import read_frame
+from api.models import Items, SaltyUser
+import pandas as pd
+
+# qs = Items.objects.all()
+# df = read_frame(qs)
+# print(df.head())
+
 
 def sentiment_score(comment):
     score = round(TextBlob(comment).sentiment.polarity, 3) 
     # the more negative the ouput value the, the more negative the sentiment of the comment
     return score
-
-
-# (optional) Define a function to return cleanedu up text blobs
-# import re
-# import nltk
-# from nltk.corpus import stopwords
-
-# def clean_text(text):
-#     REPLACE_BY_SPACE_RE = re.compile('[/(){}\[\]\|@,;]')
-#     BAD_SYMBOLS_RE = re.compile('[^0-9a-z #+_]')
-#     STOPWORDS = set(stopwords.words('english'))
-#     text = text.lower() # lowercase text
-#     text = REPLACE_BY_SPACE_RE.sub(' ', text) # replace REPLACE_BY_SPACE_RE symbols by space in text. substitute the matched string in REPLACE_BY_SPACE_RE with space.
-#     text = BAD_SYMBOLS_RE.sub('', text) # remove symbols which are in BAD_SYMBOLS_RE from text. substitute the matched string in BAD_SYMBOLS_RE with nothing. 
-#     text = text.replace('x', '')
-#     text = ' '.join(word for word in text.split() if word not in STOPWORDS) # remove stopwords from text
-#     return text
 
 
 # Query HackerNews dataset for top contributors
@@ -102,7 +93,7 @@ def salt_scorer_mk2(df, ranked_df):
     return full_table
 # Example run: salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 5000), df)))
 
-
+salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 5000), df)))
 # Installs for LSTM below
 # !pip install tensorflow
 # from tensorflow.keras.preprocessing.sequence import pad_sequences

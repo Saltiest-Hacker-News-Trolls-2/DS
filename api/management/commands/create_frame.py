@@ -11,10 +11,12 @@ populate the database. When running the command the previous database
 will be deleted
 """
 class Command(BaseCommand):
-    qs = Items.objects.all()
-    df = read_frame(qs)
-    print(df.head())
+
     def handle(self, *args, **options):
+
+        qs = Items.objects.all()
+        df = read_frame(qs)
+        print(df.head())
         SaltyUser.objects.all().delete()
 
         def sentiment_score(comment):
