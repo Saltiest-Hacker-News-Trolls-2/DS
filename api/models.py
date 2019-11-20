@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import int_list_validator
 from django_pandas.managers import DataFrameManager
+
 # Create your models here.
 class Items(models.Model):
     id = models.IntegerField(primary_key=True)
