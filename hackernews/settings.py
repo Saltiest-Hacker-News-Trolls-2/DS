@@ -29,7 +29,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # if os.environ.get('environment', 'production') != 'production':
 #     DEBUG = True
 
-ALLOWED_HOSTS = ["http://127.0.0.1:8000", "127.0.0.1"]
+ALLOWED_HOSTS = ["http://127.0.0.1:8000", "127.0.0.1", "hackernewsapilambda.herokuapp.com"]
 
 
 # Application definition
