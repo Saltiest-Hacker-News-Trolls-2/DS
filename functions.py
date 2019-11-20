@@ -7,7 +7,7 @@ def sentiment_score(comment):
     return score
 
 
-# (optional) Define a function to return cleanedu up text blobs
+# (optional) Define a function to return cleaned up text blobs
 # import re
 # import nltk
 # from nltk.corpus import stopwords
@@ -58,7 +58,7 @@ def ranker(df):
     return df #a dataset including ranks of hackers 
 
 
-# Define a function to return a comprehensive tiddy dataset
+# Define a function to return a comprehensive tidy dataset
 def salt_scorer_mk2(df, ranked_df):
     # to get ranked_df: ranker(salt_scorer_mk1(name_lister(df, cutoff), df))
     
