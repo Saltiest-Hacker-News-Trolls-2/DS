@@ -20,6 +20,7 @@ pyldavis = "*"
 textblob = "*"
 nltk = "*"
 psycopg2-binary = "*"
+faster-than-requests = "*"
 
 [requires]
 python_version = "3.7"

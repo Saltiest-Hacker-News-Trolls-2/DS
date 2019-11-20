@@ -1,10 +1,11 @@
 from django.core.management.base import BaseCommand, CommandError
-import pytz
 from api.models import Items 
-import requests
+import requests as request
 import random
 import datetime
 import html2text
+import faster_than_requests as requests
+import json
 
 
 class Command(BaseCommand):
@@ -19,7 +20,7 @@ class Command(BaseCommand):
         print("loading data from Hacker News api... ")
 
         url = 'https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty'
-        req = requests.get(url).json()
+        req = request.get(url).json()
 
         # removes html characters from data
         text_maker = html2text.HTML2Text()
@@ -28,30 +29,39 @@ class Command(BaseCommand):
         text_maker.open_quote = True
         text_maker.close_quote = True
 
-        for i in range(1, 46):
-            response = requests.get(f'https://hacker-news.firebaseio.com/v0/item/{i}.json?print=pretty')
-            if response.status_code == 200:            
-                if response.json()['type'] == 'comment':
-                    print(response.text)
-                    print('ok')
+        for i in random.sample(range(0, req), 70000):
+            response = requests.get2json(f'https://hacker-news.firebaseio.com/v0/item/{i}.json?print=pretty')
+            print(i)
+            data = json.loads(response)
 
-                    text_conv = text_maker.handle(response.json()['text'])
-
-
-                    '''
-                    Checking keys should be easier than this so maybe this can be a function. 
-                    '''
-                    if 'text' and 'by' and 'id' not in response:
-                        pass
-                    
-                    Items.objects.create(
-                        id = response.json()['id'],
-                        by = response.json()['by'],
-                        text = text_conv,
-                    )
-                    
+            if 'id' not in data:
+                # raise ValueError("No target in given data")
+                continue
+            if 'by' not in data:
+                # raise ValueError("No target in given data")
+                continue
+            if 'text' not in data:
+                # raise ValueError("No target in given data")
+                continue
+            
+            
+        
+            if data['type'] == 'comment':
+                print('inserting into database')
+                # print(data, '\n')
+                
+                text_conv = text_maker.handle(data['text'])
+                '''
+                Checking keys should be easier than this so maybe this can be a function. 
+                '''
+                Items.objects.create(
+                    id = data['id'],
+                    by = data['by'],
+                    text = text_conv,
+                )
             else:
-                print('nope', response.status_code)
+                print('nope')
+
 
         
         

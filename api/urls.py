@@ -8,8 +8,8 @@ router = routers.DefaultRouter()
 router.register(r'SaltyUsers', SaltyUserViewSet)
 
 urlpatterns = [
-    path('su', include(router.urls)),
-    path('', views.APIView.as_view(), name='api'),
+    path('', include(router.urls)),
+    path('home', views.APIView.as_view(), name='home'),
     path('list', views.APIListView.as_view(), name='api_list'),
     
 ]

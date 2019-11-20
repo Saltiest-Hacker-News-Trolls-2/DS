@@ -6,7 +6,7 @@ from rest_framework import serializers, viewsets
 # Create your views here.
 
 class APIView(TemplateView):
-    template_name = "api.html"
+    template_name = "home.html"
 
 class APIListView(ListView):
     model = Items
