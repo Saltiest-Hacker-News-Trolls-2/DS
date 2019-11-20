@@ -1,18 +1,15 @@
 from django.db import models
 from django.core.validators import int_list_validator
-
+from django_pandas.managers import DataFrameManager
 # Create your models here.
 class Items(models.Model):
     id = models.IntegerField(primary_key=True)
-    deleted = models.BooleanField(default=False)
     type = models.CharField(max_length=15)
     by = models.CharField(max_length=50)
-    time = models.IntegerField(default=0)
-    dead = models.BooleanField(default=False)
-    kids = models.CharField(max_length=300, validators=[int_list_validator])
-    parent = models.IntegerField(default=0)
     text = models.TextField(default='')
 
+    objects = DataFrameManager()
+    
     def __str__(self): 
         return self.text 
 

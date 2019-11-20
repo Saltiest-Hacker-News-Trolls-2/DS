@@ -28,10 +28,11 @@ class Command(BaseCommand):
         text_maker.bypass_tables = False
         text_maker.open_quote = True
         text_maker.close_quote = True
-
+        count = 0
         for i in random.sample(range(0, req), 70000):
             response = requests.get2json(f'https://hacker-news.firebaseio.com/v0/item/{i}.json?print=pretty')
-            print(i)
+            count+=1
+            print(i, count)
             data = json.loads(response)
 
             if 'id' not in data:

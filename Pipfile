@@ -21,6 +21,7 @@ textblob = "*"
 nltk = "*"
 psycopg2-binary = "*"
 faster-than-requests = "*"
+django-pandas = "*"
 
 [requires]
 python_version = "3.7"
