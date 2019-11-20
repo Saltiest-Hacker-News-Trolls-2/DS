@@ -22,6 +22,9 @@ nltk = "*"
 psycopg2-binary = "*"
 faster-than-requests = "*"
 django-pandas = "*"
+gunicorn = "*"
+dj-database-url = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"
