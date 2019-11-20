@@ -19,5 +19,4 @@ class SaltyUser(models.Model):
     id = models.IntegerField(primary_key=True)
     by = models.CharField(max_length=50)
     salty_score = models.DecimalField(max_digits=8, decimal_places=3)
-    sarcasm_core = models.DecimalField(max_digits=8, decimal_places=3)
-    catagory = models.CharField(default='', max_length=15)
+    rank = models.CharField(default='', max_length=15)
