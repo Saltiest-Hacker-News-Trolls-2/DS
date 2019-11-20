@@ -4,9 +4,9 @@ from django_pandas.io import read_frame
 from api.models import Items, SaltyUser
 import pandas as pd
 
-# qs = Items.objects.all()
-# df = read_frame(qs)
-# print(df.head())
+qs = Items.objects.all()
+df = read_frame(qs)
+print(df.head())
 
 
 def sentiment_score(comment):
@@ -91,9 +91,12 @@ def salt_scorer_mk2(df, ranked_df):
         full_table = pd.concat([full_table, part_table])
         
     return full_table
+
+ss = salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 1), df)))
+print(ss.head())
 # Example run: salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 5000), df)))
 
-salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 5000), df)))
+# salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 5000), df)))
 # Installs for LSTM below
 # !pip install tensorflow
 # from tensorflow.keras.preprocessing.sequence import pad_sequences

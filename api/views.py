@@ -12,10 +12,6 @@ class APIView(TemplateView):
 class APIListView(ListView):
     model = Items
 
-# class SaltyUserViewSet(viewsets.ModelViewSet):
-#     queryset = SaltyUser.objects.all()
-#     serializer_class = SaltyUserSerializer
-
 class SaltyUserList(generics.ListCreateAPIView):
     queryset = SaltyUser.objects.all()
     serializer_class = SaltyUserSerializer

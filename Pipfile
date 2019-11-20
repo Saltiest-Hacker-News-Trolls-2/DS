@@ -25,6 +25,7 @@ django-pandas = "*"
 gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

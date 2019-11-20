@@ -17,6 +17,7 @@ class Items(models.Model):
 
 class SaltyUser(models.Model):
     id = models.IntegerField(primary_key=True)
-    by = models.CharField(max_length=50)
-    salty_score = models.DecimalField(max_digits=8, decimal_places=3)
-    rank = models.CharField(default='', max_length=15)
+    hacker = models.CharField(max_length=50)
+    hacker_salt_ranking = models.IntegerField()
+    comment = models.TextField(default='')
+    comment_saltiness_score = models.DecimalField(max_digits=8, decimal_places=3)
