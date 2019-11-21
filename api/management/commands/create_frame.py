@@ -109,7 +109,7 @@ class Command(BaseCommand):
             return full_table
 
 
-        ss = salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 5), df)))
+        ss = salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 3), df)))
         # print(ss.head())
         print('done')
         

@@ -10,6 +10,7 @@ from api.views import *
 urlpatterns = [
     path('home/', views.APIView.as_view(), name='home'),
     path('list/', views.APIListView.as_view(), name='api_list'),
+    path('saltylist/', views.SaltyUserListView.as_view(), name='salty_list'),
     path('saltyuser/', views.SaltyUserList.as_view()),
     path('saltyuser/<int:pk>/', views.SaltyUserDetail.as_view()),
 ]

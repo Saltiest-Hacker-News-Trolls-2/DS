@@ -11,6 +11,8 @@ class APIView(TemplateView):
 
 class APIListView(ListView):
     model = Items
+class SaltyUserListView(ListView):
+    model = SaltyUser
 
 class SaltyUserList(generics.ListCreateAPIView):
     queryset = SaltyUser.objects.all()

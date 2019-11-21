@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for object in object_list  %}
+<!-- Card -->
+
+
+
+    <ul>
+      <!-- Currently displaying only fields requested: by, id, text -->
+      <!-- Title -->
+      <h4 class="card-title"><strong>{{ object.hacker }}</strong></h4>
+      <!-- Subtitle -->
+      <!-- <h6 class="font-weight-bold indigo-text py-2">Parent:{{ object.parent }} <br> Time:{{ object.time }} </h6> -->
+      <h6 class="font-weight-bold indigo-text py2-">SCORE:{{ object.comment_saltiness_score }} SALT:{{object.hacker_salt_ranking}}</h6>
+      <!-- Text -->
+      <p class="card-text">{{ object.comment }}</p>
+
+    </ul>
+
+
+
+<br>
+{% endfor %}
+
+
+{% endblock %}
+
