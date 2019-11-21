@@ -4,6 +4,7 @@ import pandas as pd
 from django_pandas.io import read_frame
 from api.models import Items, SaltyUser
 import requests as requests 
+import simplejson as json
 
 """
 BE CAREFUL WITH THESE COMMANDS
@@ -17,13 +18,13 @@ class Command(BaseCommand):
         SaltyUser.objects.all().delete()
         print('done')
 
-        print("querying items and running algorithm")
+        print("creating datframe")
         qs = Items.objects.all()
         df = read_frame(qs)
-        df.to_json(orient="split")
-        # print(df)
+        print('done')
 
 
+        print(" running algorithm")
         def sentiment_score(comment):
             score = round(TextBlob(comment).sentiment.polarity, 3) 
             # the more negative the ouput value the, the more negative the sentiment of the comment
@@ -107,8 +108,9 @@ class Command(BaseCommand):
                 
             return full_table
 
+
         ss = salt_scorer_mk2(df, ranker(salt_scorer_mk1(name_lister(df, 5), df)))
-        print(ss.head())
+        # print(ss.head())
         print('done')
         
         # print(ss.head())
@@ -125,14 +127,30 @@ class Command(BaseCommand):
         that circumvents having a local model
         """
 
-        response = requests.get(f'https://hackernewsapilambda.herokuapp.com/saltyuser/')
-        print(response.text)
-        url = 'https://hackernewsapilambda.herokuapp.com/saltyuser/'
-        r = requests.post(url, json=ss.to_json(orient='records'))
-        print(r.status_code)
 
+        # print("Post messege")
+        # response = requests.get('http://127.0.0.1:8000/saltyuser/')
+        # # print(response.text)
+        # # url = f'https://hackernewsapilambda.herokuapp.com/saltyuser/'
+        # url = 'http://127.0.0.1:8000/saltyuser/'
 
+        # json_obj = ss.to_json(orient='split')
+        # # ss.to_json(path_or_buf=r'api/post.json', orient='columns')
+        # # headers={'Content-Type': 'application/json'}
+
+        # r = requests.post(
+        #     url,
+        #     data= json_obj,
+        # )
+        # print(response.headers)
+
+        # """
+        # send post with dataframe
+        # """
 
         """
-        send post with dataframe
+        This works so lets stick with it, endpoint is done
         """
+        SaltyUser.objects.bulk_create(
+            SaltyUser(**vals) for vals in ss.to_dict(orient='records')
+        )

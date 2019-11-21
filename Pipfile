@@ -26,6 +26,8 @@ gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
 python-dotenv = "*"
+simplejson = "*"
+rest-pandas = "*"
 
 [requires]
 python_version = "3.7"
