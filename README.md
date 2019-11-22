@@ -5,9 +5,13 @@ Data Science/Engineering Section
 
 After pulling, run pipenv install.
 To set secret_key for django
+    
     set -a
+    
     source sample.env
+    
     set +a
+    
     *run whenevr you open a new terminal
     
     
