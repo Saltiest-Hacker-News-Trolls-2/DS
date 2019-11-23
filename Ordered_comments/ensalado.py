@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from google.cloud import bigquery
 
+
+print(' you need GOOGLE_APPLICATION_CREDENTIALS do download the dataset')
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="GAC.json"
 
 sql = """
